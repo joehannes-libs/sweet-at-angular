@@ -6,7 +6,6 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.8.11",
-    "gulp-6to5": "^3.0.0",
     "gulp-babel": "^4.0.0",
     "gulp-concat": "^2.5.0",
     "gulp-rename": "^1.2.0",
@@ -24,7 +23,11 @@
     "angular",
     "atscript"
   ],
-  "author": "joehannes",
+  "author": {
+    "name": "DI (FH) Johannes Neugschwentner",
+    "email": "johannes.neugschwentner@gmail.com",
+    "url": "http://careers.stackoverflow.com/joehannes"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/joehannes/sweet-at-angular/issues"
