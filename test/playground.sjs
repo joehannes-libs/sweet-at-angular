@@ -2,7 +2,7 @@
     module: "app",
     selector: "tag"
 })
-class XY {
+class XYZ {
     constructor (scope, element) {
       let x = 1;
     }
@@ -20,7 +20,7 @@ class XY {
     module: "services",
     id: "SuperDataService"
 })
-class ZacheZechn {
+class ZacheZechn extends HippoCampus.A.O {
     constructor ($scope, $element) {
         let a = 1;
     }

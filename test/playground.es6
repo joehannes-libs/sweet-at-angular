@@ -1,18 +1,18 @@
 angular.module('app').directive('tag', () => {
     return {
-        controller: XY,
+        controller: ZacheZechn,
         template: '<tag class=\'web-component\'></tag>',
         replace: false,
         scope: {},
         restrict: 'A'
     };
 });
-class XY {
+class XYZ {
     constructor(scope, element) {
-        let x$818 = 1;
+        let x$831 = 1;
     }
     foo(abc) {
-        let x$818 = 1;
+        let x$831 = 1;
     }
     paramless() {
         ;
@@ -20,14 +20,10 @@ class XY {
     bodyless(param) {
     }
 }
-XY.$inject = [
-    'scope',
-    'element'
-];
 angular.module('services').service('SuperDataService', ZacheZechn);
-class ZacheZechn {
+class ZacheZechn extends HippoCampus.A.O {
     constructor($scope, $element) {
-        let a$824 = 1;
+        let a$832 = 1;
     }
     static beep() {
         bop && bop();
@@ -36,7 +32,7 @@ class ZacheZechn {
         foo && foo();
     }
     foo() {
-        let a$824 = 2;
+        let a$832 = 2;
     }
     get inject() {
         'supercool';
@@ -45,9 +41,13 @@ class ZacheZechn {
         $inject.push(arg);
     }
     bar() {
-        let y$825 = 1;
+        let y$833 = 1;
     }
 }
+ZacheZechn.$inject = [
+    '$scope',
+    '$element'
+];
 ZacheZechn.$inject = [
     '$scope',
     '$element'

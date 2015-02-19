@@ -19,10 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
+macroclass $namespace {
+    pattern {
+        rule { . $class }
+    }
+}
 macroclass $cns {
      pattern {
-         rule { $sig... $cname:ident }
+         rule { $classdef:($sig... $cname:ident extends $mname $baseclass:$namespace... ) }
+     }
+     pattern {
+         rule { $classdef:($sig... $cname:ident extends $bname) }
+     }
+     pattern {
+         rule { $classdef:($sig... $cname:ident) }
      }
 }
 macroclass $method {
@@ -76,7 +86,7 @@ macro (@Directive) {
    rule { ({ module: $module:lit, selector: $selector:lit }) $class:$klass } => {
        angular.module($module).directive($selector, () => {
            return {
-               controller: $class$$klass$definition$cname,
+               controller: $class$$klass$definition$classdef$cname,
                template: makeTag "<" $selector " class='web-component'></" $selector ">",
                replace: false,
                scope: {},
@@ -85,7 +95,7 @@ macro (@Directive) {
        });
 
        $class$$klass
-       $class$$klass$definition$cname.$inject = [stringify $class$$klass$methods$cparams ...];
+       $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$methods$cparams ...];
 
 
    }
@@ -95,10 +105,10 @@ export (@Directive);
 
 macro (@Service) {
     rule { ({ module: $module:lit, id: $service:lit }) $class:$klass } => {
-        angular.module($module).service($service, $class$$klass$definition$cname);
+        angular.module($module).service($service, $class$$klass$definition$classdef$cname);
 
         $class$$klass
-        $class$$klass$definition$cname.$inject = [stringify $class$$klass$methods$cparams ...];
+        $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$methods$cparams ...];
 
 
     }

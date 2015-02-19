@@ -1,6 +1,6 @@
 {
   "name": "sweet-at-angular",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular 2.0 AtScript Annotations",
   "main": "index.sjs",
   "dependencies": {},
