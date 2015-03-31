@@ -1,29 +1,30 @@
-angular.module('app').directive('tag', () => {
+angular.module('app').directive('tata', () => {
     return {
-        controller: ZacheZechn,
-        template: '<tag class=\'web-component\'></tag>',
+        controller: 'blabla',
+        templateUrl: 'tpl.jade',
         replace: false,
         scope: {},
         restrict: 'A'
     };
 });
+angular.module('app').controller('blabla', ZacheZechn);
 class XYZ {
     constructor(scope, element) {
-        let x$831 = 1;
+        let x$852 = 1;
     }
     foo(abc) {
-        let x$831 = 1;
+        let x$852 = 1;
     }
     paramless() {
         ;
     }
-    bodyless(param) {
-    }
 }
-angular.module('services').service('SuperDataService', ZacheZechn);
+angular.module('services').controller('SuperDataService', ZacheZechn);
 class ZacheZechn extends HippoCampus.A.O {
-    constructor($scope, $element) {
-        let a$832 = 1;
+    constructor(args) {
+        super(args);
+        super(args);
+        let a$853 = 1;
     }
     static beep() {
         bop && bop();
@@ -32,7 +33,7 @@ class ZacheZechn extends HippoCampus.A.O {
         foo && foo();
     }
     foo() {
-        let a$832 = 2;
+        let a$853 = 2;
     }
     get inject() {
         'supercool';
@@ -41,13 +42,10 @@ class ZacheZechn extends HippoCampus.A.O {
         $inject.push(arg);
     }
     bar() {
-        let y$833 = 1;
+        let y$854 = 1;
     }
 }
-ZacheZechn.$inject = [
-    '$scope',
-    '$element'
-];
+ZacheZechn.$inject = ['args'];
 ZacheZechn.$inject = [
     '$scope',
     '$element'

@@ -1,6 +1,8 @@
 @Directive ({
     module: "app",
-    selector: "tag"
+    alias: "tata",
+    ctrl: "blabla",
+    template: "tpl.jade"
 })
 class XYZ {
     constructor (scope, element) {
@@ -12,11 +14,9 @@ class XYZ {
     paramless () {
       ;
     }
-    bodyless (param) {
-
-    }
 }
-@Service ({
+
+@Controller ({
     module: "services",
     id: "SuperDataService"
 })

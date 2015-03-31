@@ -43,32 +43,8 @@ macroclass $method {
 macroclass $klass {
     pattern {
         rule { $$klass:($definition:$cns {
-            $methods:(constructor ($cparams(,)...) { $cwhatever ... })
-        }) }
-    }
-    pattern {
-        rule { $$klass:($definition:$cns {
-            $methods:(
             constructor ($cparams(,)...) { $cwhatever ... }
-            $($mname:$method ($mparams ...) {$mwhatever ... }) ...
-            )
-        }) }
-    }
-    pattern {
-        rule { $$klass:($definition:$cns {
-            $methods:(
-            $methods_pre:($($mname:$method ($mparams ...) {$mwhatever ... }) ...)
-            constructor ($cparams(,)...) { $cwhatever ... }
-            )
-        }) }
-    }
-    pattern {
-        rule { $$klass:($definition:$cns {
-            $methods:(
-            $methods_pre:($($mname:$method ($mparams ...) {$mwhatever ... }) ...)
-            constructor ($cparams(,)...) { $cwhatever ... }
-            $methods_post:($($mname:$method ($mparams ...) {$mwhatever ... }) ...)
-            )
+            $methods:($mname:$method ($mparams ...) {$mwhatever ... }) ...
         }) }
     }
 }
@@ -82,39 +58,68 @@ macro makeTag {
     }
 }
 
-macro (@Directive) {
-   rule { ({ module: $module:lit, selector: $selector:lit }) $class:$klass } => {
-       angular.module($module).directive($selector, () => {
-           return {
-               controller: $class$$klass$definition$classdef$cname,
-               template: makeTag "<" $selector " class='web-component'></" $selector ">",
-               replace: false,
-               scope: {},
-               restrict: "A"
-           };
-       });
+macro (@Controller) {
+    rule { ({ module: $module:lit, id: $id:lit }) $class:$klass } => {
+        angular.module($module).controller($id, $class$$klass$definition$classdef$cname);
 
-       $class$$klass
-       $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$methods$cparams ...];
+        $class$$klass$definition$classdef {
+            constructor (...args) { 
+                super(...args);
+                $class$$klass$cwhatever ... 
+            }
+            $class$$klass$methods ...
+        }
+        $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$cparams ...];
 
-
-   }
+    }
 }
 
-export (@Directive);
+export (@Controller);
 
 macro (@Service) {
-    rule { ({ module: $module:lit, id: $service:lit }) $class:$klass } => {
-        angular.module($module).service($service, $class$$klass$definition$classdef$cname);
+    rule { ({ module: $module:lit, id: $id:lit }) $class:$klass } => {
+        angular.module($module).service($id, $class$$klass$definition$classdef$cname);
 
-        $class$$klass
-        $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$methods$cparams ...];
-
+        $class$$klass$definition$classdef {
+            constructor (...args) { 
+                super(...args);
+                $class$$klass$cwhatever ... 
+            }
+            $class$$klass$methods ...
+        }
+        $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$cparams ...];
 
     }
 }
 
 export (@Service);
+
+macro (@Directive) {
+    rule { ({ module: $module:lit, alias: $alias:lit, ctrl: $ctrl:lit, template: $url:lit }) $class:$klass } => {
+        angular.module($module).directive($alias, () => {
+            return {
+                controller: $ctrl,
+                templateUrl: $url,
+                replace: false,
+                scope: {},
+                restrict: "A"
+            };
+        });
+        angular.module($module).controller($ctrl, $class$$klass$definition$classdef$cname);
+
+        $class$$klass$definition$classdef {
+            constructor (args) { 
+                super(args);
+                $class$$klass$cwhatever ... 
+            }
+            $class$$klass$methods ...
+        }
+        $class$$klass$definition$classdef$cname.$inject = [stringify $class$$klass$cparams ...];
+
+    }
+}
+
+export (@Directive);
 
 macro _stringify {
     case { _ $val } => {
