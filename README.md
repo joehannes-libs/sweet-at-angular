@@ -1,6 +1,9 @@
 # sweet-at-angular
 Angular AtScript Annotations
 
+# CAUTION: DEPRECATED ...
+# head to github.com/ng-harmony for the successor ...
+
 ###Look into the gulpfile and test dir for instructions on usage.
 
 ###Using this module you can write Angular 2.0 like code.
